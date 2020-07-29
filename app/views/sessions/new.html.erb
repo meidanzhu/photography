@@ -1,0 +1,15 @@
+<h1>Login</h1>
+
+<%= form_tag '/' do %>
+    <%= label_tag :username %>
+    <%= text_field_tag :username %><br>
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password %><br>
+
+    <%= submit_tag "Login" %>
+
+<% end %> 
+<%= button_to "Login with Google", '/auth/google_oauth2'%>
+
+<h3>Don't have an account? <%= link_to "Sign Up", new_user_path%></h3>
