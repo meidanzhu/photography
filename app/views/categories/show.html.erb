@@ -1,0 +1,7 @@
+<h1><%= @category.name%></h1>
+<div>
+<% @category.photos.each do |cp|%>
+<%= cp.title%>
+<p>Caption: <%= cp.caption %></p>
+<% end %>
+</div>

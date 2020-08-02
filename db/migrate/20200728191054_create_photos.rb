@@ -3,8 +3,8 @@ class CreatePhotos < ActiveRecord::Migration[6.0]
     create_table :photos do |t|
       t.string :title
       t.text :caption
-      t.belongs_to :user
-      t.belongs_to :category
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :category, foreign_key: true
       
       t.timestamps
     end

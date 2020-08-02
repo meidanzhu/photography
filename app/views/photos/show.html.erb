@@ -1,0 +1,10 @@
+<h1>Photo#show</h1>
+
+<h1>Title: <%=@photo.title%></h1>
+
+<h2>Caption: <%=@photo.caption%></h2>
+
+<h3>Category: <%= link_to @photo.category.name, photo_category_path(@photo) %></h3>
+
+<%= link_to "Edit Photo", edit_photo_path(@photo)%> | 
+<%= link_to "Delete Photo", photo_path(@photo), method: 'delete'%>

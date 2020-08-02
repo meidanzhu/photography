@@ -1,1 +1,8 @@
-  <h1>Welcome, <%= @user.username %></h1>
+<h1>Welcome, <%= @user.username %></h1>
+
+
+<h2>Photos:</h2>
+<% @user.photos.each do |photo| %>
+  <li><%= link_to photo.title, photo_path(photo)%></li>
+ <% end %> 
+

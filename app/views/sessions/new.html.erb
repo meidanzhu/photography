@@ -1,6 +1,7 @@
 <h1>Login</h1>
+<p><%= flash[:error]%></p>
 
-<%= form_tag '/' do %>
+<%= form_tag(controller: 'sessions', action: 'create') do %>
     <%= label_tag :username %>
     <%= text_field_tag :username %><br>
 
@@ -9,7 +10,7 @@
 
     <%= submit_tag "Login" %>
 
-<% end %> 
+<% end %> <br>
 <%= button_to "Login with Google", '/auth/google_oauth2'%>
 
 <h3>Don't have an account? <%= link_to "Sign Up", new_user_path%></h3>

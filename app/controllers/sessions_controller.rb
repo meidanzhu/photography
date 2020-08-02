@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 #login user, logout user, omniauth
+    def welcome
+    end
+    
     def new
         @user = User.new
     end
@@ -10,14 +13,14 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            flash[:message] = "Invalid username or password. Please try again" 
-            redirect_to '/'
+            flash[:error] = "Invalid username or password. Please try again" 
+            redirect_to '/login'
         end
     end
 
     def destroy 
         session.delete(:user_id)
-        redirect_to root_path
+        redirect_to '/'
     end
     
     def omniauth
@@ -25,11 +28,11 @@ class SessionsController < ApplicationController
         #binding.pry
         user = User.from_omniauth(request.env['omniauth.auth'])
         if user.valid?
-        session[:user_id] = user.id 
-        redirect_to user_path(user)
+            session[:user_id] = user.id 
+            redirect_to user_path(user)
         else 
-        flash[:message] = user.errors.full_message.join(". ")
-        redirect_to '/login'
+            flash[:message] = user.errors.full_message.join(". ")
+            redirect_to '/login'
         end
     end
 

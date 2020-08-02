@@ -1,0 +1,8 @@
+<h1>All Photos</h1>
+<div>
+<% @photos.each do |photo|%>
+<%= link_to photo.title, photo_path(photo)%>
+<p>Caption: <%= photo.caption %></p>
+<p>Category: <%= photo.category.name%></p>
+<% end %>
+</div>

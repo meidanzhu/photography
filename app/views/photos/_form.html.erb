@@ -1,0 +1,15 @@
+<%= form_for(@photo) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :caption%>
+    <%= f.text_field :caption%>
+    <br>
+   <p>Select a Category: 
+    <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Select One' %></p>
+
+    <%= link_to "Add New Category", new_category_path %>
+    <br><br>
+
+    <%= f.submit %>
+<% end %>
