@@ -1,7 +1,11 @@
 <h1><%= @category.name%></h1>
 <div>
 <% @category.photos.each do |cp|%>
-<%= cp.title%>
-<p>Caption: <%= cp.caption %></p>
+<% if cp.image.attached? %>
+   <%= image_tag url_for cp.image.variant(resize_to_fill: [640, 480]) %>
+<% end %>
+<h2><%= link_to cp.title, photo_path(cp)%></h2>
 <% end %>
 </div>
+
+ <%= link_to "Upload A Photo", new_photo_path%>

@@ -10,18 +10,28 @@
   </head>
 
   <body>
+  
+  <div class="wrapper">
+   <style> h1 {text-align: center;}
+          p {text-align: center;}
+          div {text-align: center;}
+    </style>
   <% if logged_in? %>
     <nav class='navbar'>
-  <%= link_to 'View All Photos', categories_path, class:'button'%>
-  <%= link_to 'My Photos', photos_path, class:'button'%>
-  <%= link_to "Upload Photo", new_photo_path, class:'button'%>
+  <%= link_to 'Categories', categories_path, class:'button'%> |
+  <%= link_to 'View My Photos', photos_path, class:'button'%> |
+  <%= link_to "Upload Photo", new_photo_path, class:'button'%> |
   <%= link_to "Logout", logout_path, method: :delete, class:'button' %>
   </nav>
      <% else %>
       <%= link_to 'Login', login_path %> or <%= link_to "Signup", signup_path%>
     <% end %>
-    <div class='container'>
+    <br>
     <%= yield %>
+    <br><br>
+      <footer class="branding">
+        <small>&copy; 2020 <strong>MDPHOTOGRAPHY</strong></small>
+      </footer>
     </div>
   </body>
 </html>

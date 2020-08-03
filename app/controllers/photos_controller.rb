@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
     before_action :redirect_if_not_logged_in
-    
+
     def index
         @photos = current_user.photos
     end
@@ -11,9 +11,11 @@ class PhotosController < ApplicationController
     end
 
     def create
-        @photo = current_user.photos.build(photo_params)
-        if @photo.valid?
-            @photo.save
+        @photo = Photo.new(photo_params)
+        @photo.user_id = session[:user_id]
+        if @photo.save
+            @photo.image.purge
+            @photo.image.attach(params[:photo][:image])
             redirect_to photo_path(@photo)
         else
             render :new, alert: "Invalid information."
@@ -30,7 +32,7 @@ class PhotosController < ApplicationController
 
     def update
         set_photo
-        if @photo.save
+        if logged_in? && @photo.user == current_user
             @photo.update(photo_params)
             redirect_to photo_path(@photo)
         else
@@ -49,7 +51,7 @@ class PhotosController < ApplicationController
         end
 
         def photo_params
-            params.require(:photo).permit(:title, :caption, :category_id, category_attributes: [:name])
+            params.require(:photo).permit(:title, :caption, :image, :category_id, category_attributes: [:name])
         end
 
 end

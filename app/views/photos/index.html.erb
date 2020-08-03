@@ -1,8 +1,13 @@
-<h1>All Photos</h1>
+<h1>My Photos</h1>
+<%= link_to "Upload A Photo", new_photo_path%>
 <div>
 <% @photos.each do |photo|%>
-<%= link_to photo.title, photo_path(photo)%>
+<% if photo.image.attached? %>
+   <%= image_tag url_for photo.image.variant(resize_to_fill: [640, 480]) %>
+<% end %>
+<h2><%= link_to photo.title, photo_path(photo)%></h2>
+<h3>Category: <%= photo.category.name%></h3>
 <p>Caption: <%= photo.caption %></p>
-<p>Category: <%= photo.category.name%></p>
+<hr>
 <% end %>
 </div>

@@ -1,10 +1,11 @@
-<h1>Photo#show</h1>
+<h1><%=@photo.title%></h1>
 
-<h1>Title: <%=@photo.title%></h1>
-
-<h2>Caption: <%=@photo.caption%></h2>
+<% if @photo.image.attached? %>
+   <%= image_tag url_for @photo.image.variant(resize_to_fill: [640, 480])   %>
+<% end %>
 
 <h3>Category: <%= link_to @photo.category.name, photo_category_path(@photo) %></h3>
+<p>Caption: <%=@photo.caption%></p>
 
 <%= link_to "Edit Photo", edit_photo_path(@photo)%> | 
 <%= link_to "Delete Photo", photo_path(@photo), method: 'delete'%>

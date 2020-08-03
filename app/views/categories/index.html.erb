@@ -1,7 +1,7 @@
-<h1>All Categories</h1>
+<h1>Select Category</h1>
 <div>
 <% @categories.each do |c| %>
-    <li><%= link_to c.name, category_path(c) %></li>
+    <h3><li><%= link_to c.name, category_path(c) %></li></h3>
     <br>
 <% end %>
 </div>

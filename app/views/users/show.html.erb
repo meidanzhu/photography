@@ -3,6 +3,9 @@
 
 <h2>Photos:</h2>
 <% @user.photos.each do |photo| %>
+<% if photo.image.attached? %>
+   <%= image_tag url_for photo.image.variant(resize_to_fill: [640, 480])   %>
+<% end %>
   <li><%= link_to photo.title, photo_path(photo)%></li>
  <% end %> 
 
