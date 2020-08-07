@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-resources :categories
-resources :photos
-resources :users
-
 #Omniauth
 get '/auth/:provider/callback', to: 'sessions#omniauth'
 
@@ -21,14 +17,15 @@ get 'signup', to: 'users#new'
 post 'signup', to: 'users#create'
 
 #nested routes
-resources :photos do
-  resources :categories
-end
-
-resources :users do
+resources :categories, only: [:index, :new, :create, :show] do
   resources :photos
 end
 
+resources :users, only: [:new, :create, :show] do
+  resources :photos, only:[:index, :new, :create, :edit, :destroy]
+end
+
+resources :photos
 
 end
 

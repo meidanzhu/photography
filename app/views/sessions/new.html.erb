@@ -1,7 +1,7 @@
 <h1>Login</h1>
-<p><%= flash[:error]%></p>
+<p><%= flash[:message]%></p>
 
-<%= form_tag(controller: 'sessions', action: 'create') do %>
+<%= form_tag({controller: 'sessions', action: 'create', method: 'post'}) do %>
     <%= label_tag :username %>
     <%= text_field_tag :username %><br>
 

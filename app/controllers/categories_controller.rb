@@ -2,8 +2,8 @@ class CategoriesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        @categories = Category.alpha
-    end
+        @categories = Category.all.alpha
+    end 
 
     def new
         @category = Category.new
@@ -18,13 +18,9 @@ class CategoriesController < ApplicationController
         end
     end
 
-    def show
-        @category = Category.find(params[:id])
-    end
-
     private
 
     def category_params
-        params.require(:category).permit(:name, photo_attributes: [:title, :caption])
+        params.require(:category).permit(:name)
     end
 end

@@ -8,6 +8,5 @@ class Photo < ApplicationRecord
     validates :caption, presence: true
     validates :caption, length: { maximum: 250 }
 
-    accepts_nested_attributes_for :category
-
+    accepts_nested_attributes_for :user, :category
 end

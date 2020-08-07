@@ -15,25 +15,11 @@ class UsersController < ApplicationController
     end
 
     def show 
-        set_user
-        redirect_to '/' if !@user 
-    end
-
-    def edit 
-        set_user
-    end
-
-    def update
-        @user = User.find_by(id: params[:id])
-        @user.update(user_params)
-        redirect_to user_path(@user)
+        @user = User.find(params[:id])
+        @photos = @user.photos
     end
     
     private 
-
-        def set_user
-            @user = User.find_by(id: params[:id])
-        end
 
         def user_params 
             params.require(:user).permit(:username, :password)

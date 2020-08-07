@@ -1,7 +1,8 @@
-<h1>Select Category</h1>
+<h1>All Categories</h1>
 <div>
 <% @categories.each do |c| %>
-    <h3><li><%= link_to c.name, category_path(c) %></li></h3>
-    <br>
+    <h3><li><%= link_to c.name, category_photos_path(c) %></li></h3>
+    <%= link_to "Add New Photo", new_category_photo_path(c) %>
+    <hr>
 <% end %>
 </div>
