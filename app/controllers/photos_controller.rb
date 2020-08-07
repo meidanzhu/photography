@@ -5,25 +5,19 @@ class PhotosController < ApplicationController
     def index
         if params[:category_id] && @category = Category.find_by_id(params[:category_id])
             @photos = @category.photos
-          else
+        else
             @photos = Photo.all
         end
     end
 
     def new
-        if params[:category_id] && @category = Category.find_by_id(params[:category_id])
-            @photo = @category.photos.build
-        else
-            @photo = Photo.new
-            @photo.build_category
-        end
+        @photo = Photo.new
+        @photo.build_category
     end
 
     def create
         @photo = current_user.photos.build(photo_params)
         if @photo.save
-            @photo.image.purge
-            @photo.image.attach(params[:photo][:image])
             redirect_to photo_path(@photo)
         else
             @category = Category.find_by_id(params[:category_id]) if params[:category_id]
